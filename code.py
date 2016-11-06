@@ -314,5 +314,3 @@ def P8(train_data, test_data, train_labels, test_labels):
         C_param_list.append(c)
 
     plt.plot(C_param_list, f_score_list)
-
-P8(train_data, test_data, train_labels, test_labels)
