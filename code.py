@@ -42,12 +42,15 @@ print('test label shape:', test_labels.shape)
 print('dev label shape:', dev_labels.shape)
 print('labels names:', newsgroups_train.target_names)
 
+# ====== for the first 5 training examples print the text of the message along with the label ======
 
 def P1(train_data, train_labels, num_examples=5):
     for i in range(0,num_examples):
         print("training example: ", train_data[i])
         print("label: ", train_labels[i])
         print()
+
+# ====== vectorizing data and using its options ======
 
 def P2(train_data, test_data):
     # default vectorizer
@@ -90,6 +93,7 @@ def P2(train_data, test_data):
 
 [X_train, X_test] = P2(train_data, test_data)
 
+# ====== k nearest neighbors, multinomial naive Bayes and logistic regression classifiers ======
 
 def P3(X_train, X_test, train_labels, test_labels):
     warnings.filterwarnings('ignore')
@@ -153,6 +157,8 @@ def P3(X_train, X_test, train_labels, test_labels):
 
 [best_C, log_regression] = P3(X_train, X_test, train_labels, test_labels)
 
+# ====== logistic regression classifier with 5 largest weights for each label (print table) ======
+
 def P4(train_data, log_regression, X_train, train_labels, best_C):
     print("Unigram features table: ")
     iter = 0
@@ -187,6 +193,8 @@ def P4(train_data, log_regression, X_train, train_labels, best_C):
         print()
 
 P4(train_data, log_regression, X_train, train_labels, best_C)
+
+# ====== preprocessing data and running logistic regression vectorizer ======
 
 def empty_preprocessor(train_data, test_data):
     return train_data, test_data
@@ -224,6 +232,8 @@ def P5(X_train_orig, train_data2,test_data2,train_labels):
     return f_score
 
 f_new_score = P5(X_train, train_data2, test_data2, train_labels)
+
+# ====== logistic regression regularization (show plot) ======
 
 def P6(X_train, X_test, train_labels, test_labels):
     log_regression = LogisticRegression(penalty='l1', C=best_C).fit(X_train, train_labels)
@@ -266,6 +276,8 @@ def P6(X_train, X_test, train_labels, test_labels):
 
 P6(X_train, X_test, train_labels, test_labels)
 
+# ====== tf-idf vectorizer and R value ======
+
 def P7(train_data, test_data):
     vectorizer = TfidfVectorizer()
 
@@ -293,6 +305,8 @@ def P7(train_data, test_data):
         print(ratio_top3[i])
 
 P7(train_data, test_data)
+
+# ====== implement own ideas with logistic regression classifier ======
 
 def P8(train_data, test_data, train_labels, test_labels):
     # use tf-idf vectorizer together with data preprocessing and choosing optimal C value
